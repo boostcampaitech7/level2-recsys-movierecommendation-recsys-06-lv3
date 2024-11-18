@@ -42,6 +42,8 @@ def merge_user_items_attributes(data_path):
     data.loc[d_null_idx, "director"] = data.loc[d_null_idx, "director"].apply(
         lambda x: [-999]
     )
+    data = data.set_index("item")
+    data.sort_index(inplace=True)
     data.to_csv(data_path + "/items.csv")
     data = train_ratings.merge(data, on="item", how="left")
     data.to_csv(data_path + "/user_ratings_items.csv")
