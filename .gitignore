@@ -174,4 +174,4 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python
 config.yaml
-config/model_configs/
+./config/model_configs/*.yaml
