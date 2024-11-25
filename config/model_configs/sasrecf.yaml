@@ -2,40 +2,52 @@ model: SASRecF  # 모델 이름
 dataset: sasrecf  # 데이터셋 이름 (기본 제공 데이터셋 사용)
 data_path: ./data/recbole
 field_separator: "\t"
-#seq_separator: ","
-
+seq_separator: ","
 load_col: {
-  inter: [ user_id, item_id, timestamp ],
-  item: [ item_id, director_id, writer_id, year
-    Action, Adventure, Animation, Children,
-    Comedy, Crime, Documentary, Drama,
-    Fantasy, Film-Noir, Horror, Musical,
-    Mystery, Romance, Sci-Fi, Thriller,
-    War, Western ]
+  inter: [ user_id, item_id , timestamp ],
+  item: [ item_id,
+          Action, Adventure, Animation, Children,
+          Comedy, Crime, Documentary, Drama,
+          Fantasy, Film-Noir, Horror, Musical,
+          Mystery, Romance, Sci-Fi, Thriller,
+          War, Western ]
 }
 
 # 기본 필드 설정
-#USER_ID_FIELD: user
-#ITEM_ID_FIELD: item
-#LABEL_FIELD: label
+USER_ID_FIELD: user_id
+ITEM_ID_FIELD: item_id
+TIME_FIELD: timestamp
 
 # 아이템 피처 설정
-ITEM_FEATURES: [ 'title', 'year', 'genre', 'director', 'writer' ]
+ITEM_FEATURES: [
+  Action, Adventure, Animation, Children,
+  Comedy, Crime, Documentary, Drama,
+  Fantasy, Film-Noir, Horror, Musical,
+  Mystery, Romance, Sci-Fi, Thriller,
+  War, Western ]
 
+selected_features: [
+  Action, Adventure, Animation, Children,
+  Comedy, Crime, Documentary, Drama,
+  Fantasy, Film-Noir, Horror, Musical,
+  Mystery, Romance, Sci-Fi, Thriller,
+  War, Western ]
 # Multi-value 필드 설정
-MULTI_VALUE_FIELDS: [ 'genre', 'director', 'writer' ]
+
+#MULTI_VALUE_FIELDS: [ 'genre', 'director', 'writer' ]
 
 # 데이터 전처리 설정
 MAX_ITEM_LIST_LENGTH: 50  # 사용자 시퀀스의 최대 길이
+#neg_sampling: none
+#train_neg_sample_args: ~
 train_neg_sample_args:
-  distribution: uniform
-  sample_num: 50
-
+  distribution: popularity
+  sample_num: 5
 
 # 학습 하이퍼파라미터
 epochs: 10
 learning_rate: 0.001
-train_batch_size: 256
+train_batch_size: 512
 embedding_size: 64
 stopping_step: 10
 hidden_size: 64
@@ -51,7 +63,7 @@ hidden_dropout_prob: 0.5
 #(float) : The probability of an element to be zeroed. Defaults to 0.5.
 attn_dropout_prob: 0.5
 # (float) : The probability of an attention score to be zeroed. Defaults to 0.5.
-hidden_act: sigmoid
+hidden_act: gelu
 # (str) : The activation function in feed-forward layer. Defaults to 'gelu'. Range in ['gelu', 'relu', 'swish', 'tanh', 'sigmoid'].
 layer_norm_eps: 1e-12
 #(float) : A value added to the denominator for numerical stability. Defaults to 1e-12.

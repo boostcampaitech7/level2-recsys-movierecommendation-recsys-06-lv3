@@ -62,6 +62,8 @@ class SasRecFData(DataInterface):
         for col in cols:
             if col == "item":
                 col = f"{col}_id:token"
+            elif col not in ["year"]:
+                col = f"{col}:token"
             else:
                 col = f"{col}:float"
             change_col_ls.append(col)
@@ -93,5 +95,5 @@ class SasRecFData(DataInterface):
 
         for key in self.export_dfs:
             print(f"{key} is export file in {self.export_path}")
-            print(f"{key} column list is {self.export_dfs[key].columns}")
+            print(f"{key} column list is {self.export_dfs[key].columns} - shape({self.export_dfs[key].shape})")
             self.export_dfs[key].to_csv(os.path.join(self.export_path, self.dataset, key), index=False, sep="\t")
