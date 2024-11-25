@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Black">
-    <option name="enabledOnSave" value="true" />
-    <option name="sdkName" value="Python 3.12 (level2-recsys-movierecommendation-recsys-06-lv3)" />
+    <option name="sdkName" value="Remote Python 3.10.13 (sftp://root@10.28.224.129:31237/opt/conda/bin/python)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (level2-competitiveds-recsys-06)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Remote Python 3.10.13 (sftp://root@10.28.224.129:31237/opt/conda/bin/python)" project-jdk-type="Python SDK" />
 </project>

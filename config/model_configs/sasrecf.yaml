@@ -1,0 +1,67 @@
+model: SASRecF  # 모델 이름
+dataset: sasrecf  # 데이터셋 이름 (기본 제공 데이터셋 사용)
+data_path: ./data/recbole
+field_separator: "\t"
+#seq_separator: ","
+
+load_col: {
+  inter: [ user_id, item_id, timestamp ],
+  item: [ item_id, director_id, writer_id, year
+    Action, Adventure, Animation, Children,
+    Comedy, Crime, Documentary, Drama,
+    Fantasy, Film-Noir, Horror, Musical,
+    Mystery, Romance, Sci-Fi, Thriller,
+    War, Western ]
+}
+
+# 기본 필드 설정
+#USER_ID_FIELD: user
+#ITEM_ID_FIELD: item
+#LABEL_FIELD: label
+
+# 아이템 피처 설정
+ITEM_FEATURES: [ 'title', 'year', 'genre', 'director', 'writer' ]
+
+# Multi-value 필드 설정
+MULTI_VALUE_FIELDS: [ 'genre', 'director', 'writer' ]
+
+# 데이터 전처리 설정
+MAX_ITEM_LIST_LENGTH: 50  # 사용자 시퀀스의 최대 길이
+train_neg_sample_args:
+  distribution: uniform
+  sample_num: 50
+
+
+# 학습 하이퍼파라미터
+epochs: 10
+learning_rate: 0.001
+train_batch_size: 256
+embedding_size: 64
+stopping_step: 10
+hidden_size: 64
+loss_type: BPR
+#(int) : The number of features in the hidden state. It is also the initial embedding size of item. Defaults to 64.
+inner_size: 256
+#(int) : The inner hidden size in feed-forward layer. Defaults to 256.
+n_layers: 2
+# (int) : The number of transformer layers in transformer encoder. Defaults to 2.
+n_heads: 2
+#(int) : The number of attention heads for multi-head attention layer. Defaults to 2.
+hidden_dropout_prob: 0.5
+#(float) : The probability of an element to be zeroed. Defaults to 0.5.
+attn_dropout_prob: 0.5
+# (float) : The probability of an attention score to be zeroed. Defaults to 0.5.
+hidden_act: sigmoid
+# (str) : The activation function in feed-forward layer. Defaults to 'gelu'. Range in ['gelu', 'relu', 'swish', 'tanh', 'sigmoid'].
+layer_norm_eps: 1e-12
+#(float) : A value added to the denominator for numerical stability. Defaults to 1e-12.
+initializer_range: 0.02
+#(float) : The standard deviation for normal initialization. Defaults to 0.02``.
+
+# 평가 지표 설정
+metrics:
+  - mrr
+  - recall
+  - precision
+topk: 10  # Top-K 추천 평가
+

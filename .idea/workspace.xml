@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6912b0b1-96ab-44c3-93c0-9002cabc712d" name="변경" comment="" />
+    <list default="true" id="6912b0b1-96ab-44c3-93c0-9002cabc712d" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/notebooks/유대선/recbole.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config-sample.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/config-sample.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/model_configs/sasrec.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/DataInterface.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/DataInterface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/__init__.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,8 +24,12 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -23,27 +37,75 @@
   <component name="OptimizeOnSaveOptions">
     <option name="myRunOnSave" value="true" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2pKMkJjYS3fhij4lqk3KwHJLbOp" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "iss-26",
-    "last_opened_file_path": "C:/Users/xenx9/Desktop/Development/level2-recsys-movierecommendation-recsys-06-lv3",
+    "Python.app.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "iss-28",
+    "last_opened_file_path": "C:/Users/xenx9/Desktop/Development/level2-recsys-movierecommendation-recsys-06-lv3/src/data",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "actions.on.save"
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\xenx9\Desktop\Development\level2-recsys-movierecommendation-recsys-06-lv3\src\data" />
+      <recent name="C:\Users\xenx9\Desktop\Development\level2-recsys-movierecommendation-recsys-06-lv3\config" />
       <recent name="C:\Users\xenx9\Desktop\Development\level2-recsys-movierecommendation-recsys-06-lv3" />
       <recent name="C:\Users\xenx9\Desktop\Development\level2-recsys-movierecommendation-recsys-06-lv3\saved" />
       <recent name="C:\Users\xenx9\Desktop\Development\level2-recsys-movierecommendation-recsys-06-lv3\saved\model" />
-      <recent name="C:\Users\xenx9\Desktop\Development\level2-recsys-movierecommendation-recsys-06-lv3\notebooks" />
-      <recent name="C:\Users\xenx9\Desktop\Development\level2-recsys-movierecommendation-recsys-06-lv3\notebooks\유대선" />
     </key>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23339.19" />
+        <option value="bundled-python-sdk-0029f7779945-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23339.19" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="SshConsoleOptionsProvider">
+    <option name="myEncoding" value="UTF-8" />
+    <option name="myConnectionType" value="DEFAULT_SDK" />
+    <option name="myConnectionId" value="" />
+  </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="6912b0b1-96ab-44c3-93c0-9002cabc712d" name="변경" comment="" />
+      <created>1732510458354</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732510458354</updated>
+      <workItem from="1732510459915" duration="1065000" />
+      <workItem from="1732511540146" duration="1832000" />
+      <workItem from="1732513481578" duration="114000" />
+      <workItem from="1732513603363" duration="125000" />
+      <workItem from="1732513736181" duration="2521000" />
+      <workItem from="1732522572195" duration="389000" />
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/level2_recsys_movierecommendation_recsys_06_lv3$app.coverage" NAME="app 커버리지 결과" MODIFIED="1732522354461" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/_env_sample$app.coverage" NAME="app 커버리지 결과" MODIFIED="1732522842182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
