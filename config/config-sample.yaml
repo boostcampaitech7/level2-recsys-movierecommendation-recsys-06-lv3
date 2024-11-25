@@ -1,0 +1,8 @@
+model:
+  type: FM
+  mode: train #train or valid - (valid is train with valid)
+  save_path : ./saved/model
+data:
+  type: basic # basic / v2
+  base_path: ./data/train
+
