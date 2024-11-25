@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6912b0b1-96ab-44c3-93c0-9002cabc712d" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.sample" beforeDir="false" afterPath="$PROJECT_DIR$/.env.sample" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2.init-git-clone.sh" beforeDir="false" afterPath="$PROJECT_DIR$/2.init-git-clone.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/3.start-app.sh" beforeDir="false" afterPath="$PROJECT_DIR$/3.start-app.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/5.scp-data-send-server.sh" beforeDir="false" afterPath="$PROJECT_DIR$/5.scp-data-send-server.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/6.scp-get-output-data.sh" beforeDir="false" afterPath="$PROJECT_DIR$/6.scp-get-output-data.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config-sample.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/config-sample.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model.py" afterDir="false" />
-    </list>
+    <list default="true" id="6912b0b1-96ab-44c3-93c0-9002cabc712d" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
