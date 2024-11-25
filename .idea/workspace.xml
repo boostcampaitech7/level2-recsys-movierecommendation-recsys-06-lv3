@@ -5,29 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6912b0b1-96ab-44c3-93c0-9002cabc712d" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.sample" beforeDir="false" afterPath="$PROJECT_DIR$/.env.sample" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2.init-git-clone.sh" beforeDir="false" afterPath="$PROJECT_DIR$/2.init-git-clone.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/3.start-app.sh" beforeDir="false" afterPath="$PROJECT_DIR$/3.start-app.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/5.scp-data-send-server.sh" beforeDir="false" afterPath="$PROJECT_DIR$/5.scp-data-send-server.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/6.scp-get-output-data.sh" beforeDir="false" afterPath="$PROJECT_DIR$/6.scp-get-output-data.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/config-sample.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/config-sample.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/model_configs/model_configs.md" beforeDir="false" afterPath="$PROJECT_DIR$/config/model_configs/model_configs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/ensemble.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/experiments.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/pretrain.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/single_models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/eda.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/feature_analysis.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/model_analysis.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/notebooks.md" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/notebooks.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/saved/logs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/saved/models" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/saved/predictions" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/data.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/data.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/data_processor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/dataset.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/feature_extractor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/base_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/models.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/src.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/src.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

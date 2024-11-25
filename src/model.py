@@ -4,6 +4,7 @@ from recbole.quick_start import run_recbole
 class Model(object):
     def __init__(self, recbole_cfg_path, save_path: str, mode="train"):
         self.cfg_path = recbole_cfg_path
+        self.save_path = save_path
         self._train()
         if mode.lower() == "valid":
             self._valid()
