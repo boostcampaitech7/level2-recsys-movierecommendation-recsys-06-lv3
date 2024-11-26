@@ -1,0 +1,43 @@
+# Data config
+USER_ID_FIELD: user_id
+ITEM_ID_FIELD: item_id
+TIME_FIELD: timestamp
+MAX_ITEM_LIST_LENGTH: 50
+
+field_separator: "\t"
+seq_separator: " "
+load_col:
+    inter: [user_id, item_id, timestamp, rating]
+    item: [item_id, title, year, genre]
+
+# Model config
+model: GRU4Rec
+embedding_size: 64
+hidden_size: 64
+num_layers: 1
+dropout_prob: 0.1
+
+# Training config
+epochs: 20
+train_batch_size: 128
+eval_batch_size: 128
+learning_rate: 0.001
+metrics: [recall]
+topk: [10]
+valid_metric: recall@10
+loss_type: BPR
+
+# Negative Sampling config
+train_neg_sample_args:
+    distribution: uniform
+    sample_num: 1
+    
+eval_args:
+    mode: full
+    order: TO
+    split: {'RS': [0.8, 0.1, 0.1]}
+    group_by: user
+
+# GPU acceleration
+use_gpu: True
+gpu_id: 0
