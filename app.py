@@ -20,7 +20,7 @@ def app():
     ## (Train or Train/Valid) & Inference
     mode = cfg["model"]["mode"]
     print(f"-------Start Train{mode}------------")
-    model = Model(cfg)
+    Model(cfg)
 
     return
 

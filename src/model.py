@@ -1,12 +1,16 @@
+import datetime
 import sys
 from logging import getLogger
 
+import numpy as np
+import pandas as pd
+import torch
 import torch.distributed as dist
 from omegaconf import OmegaConf
 from recbole.config import Config
 from recbole.data import (
     create_dataset,
-    data_preparation,
+    data_preparation, Interaction,
 )
 from recbole.data.transform import construct_transform
 from recbole.model.abstract_recommender import AbstractRecommender
@@ -20,6 +24,7 @@ from recbole.utils import (
     get_flops,
     get_environment,
 )
+from tqdm import tqdm
 
 
 class Model(object):
@@ -153,7 +158,89 @@ class Model(object):
         # print(result)
 
     def _inference(self):
-        pass
+        recall_n = self.rc_cfg["topk"]
+        if type(recall_n) == list:
+            recall_n = recall_n[0]
+        dataset = create_dataset(self.rc_cfg)
+
+        # device 설정
+        device = self.rc_cfg['device']
+
+        # user, item id -> token 변환 array
+        user_id = self.rc_cfg['USER_ID_FIELD']
+        item_id = self.rc_cfg['ITEM_ID_FIELD']
+        user_id2token = dataset.field2id_token[user_id]
+        item_id2token = dataset.field2id_token[item_id]
+
+        # user id list
+        all_user_list = torch.arange(1, len(user_id2token)).view(-1, 128)
+
+        # user, item 길이
+        # user_len = len(user_id2token)
+        item_len = len(item_id2token)
+
+        # user-item sparse matrix
+        matrix = dataset.inter_matrix(form='csr')
+
+        # user id, predict item id 저장 변수
+        pred_list = None
+        user_list = None
+
+        # model 평가모드 전환
+        self.model.eval()
+
+        # progress bar 설정
+        tbar = tqdm(all_user_list, desc=set_color(f"Inference", 'pink'))
+
+        for data in tbar:
+            # interaction 생성
+            interaction = dict()
+            interaction = Interaction(interaction)
+            interaction[user_id] = data
+            interaction = interaction.to(device)
+
+            # user item별 score 예측
+            score = self.model.full_sort_predict(interaction)
+            score = score.view(-1, item_len)
+
+            rating_pred = score.cpu().data.numpy().copy()
+
+            user_index = data.numpy()
+
+            idx = matrix[user_index].toarray() > 0
+
+            rating_pred[idx] = -np.inf
+            rating_pred[:, 0] = -np.inf
+            ind = np.argpartition(rating_pred, -recall_n)[:, -recall_n:]
+
+            arr_ind = rating_pred[np.arange(len(rating_pred))[:, None], ind]
+
+            arr_ind_argsort = np.argsort(arr_ind)[np.arange(len(rating_pred)), ::-1]
+
+            batch_pred_list = ind[
+                np.arange(len(rating_pred))[:, None], arr_ind_argsort
+            ]
+
+            if pred_list is None:
+                pred_list = batch_pred_list
+                user_list = user_index
+            else:
+                pred_list = np.append(pred_list, batch_pred_list, axis=0)
+                user_list = np.append(
+                    user_list, user_index, axis=0
+                )
+
+        result = []
+        for user, pred in zip(user_list, pred_list):
+            for item in pred:
+                result.append((int(user_id2token[user]), int(item_id2token[item])))
+
+        # 데이터 저장
+        dataframe = pd.DataFrame(result, columns=["user", "item"])
+        dataframe.to_csv(
+            f"./saved/submission-{self.rc_cfg['model']}-{datetime.datetime.now().timestamp()}.csv", index=False
+        )
+        print('inference done!')
 
     def _valid(self):
         pass
