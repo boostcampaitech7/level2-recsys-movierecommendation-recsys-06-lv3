@@ -18,4 +18,5 @@ omegaconf==2.3.0
 jupyter
 # Code Formatting
 black
+wandb
 #pytorch torchvision torchaudio cpuonly -c pytorch

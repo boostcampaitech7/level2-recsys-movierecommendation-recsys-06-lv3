@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6912b0b1-96ab-44c3-93c0-9002cabc712d" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/3.start-app.sh" beforeDir="false" afterPath="$PROJECT_DIR$/3.start-app.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config-sample.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/config-sample.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/model_configs/bert4rec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/model_configs/bert4rec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/model_configs/gru4rec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/model_configs/gru4rec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/model_configs/gru4rec.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/config/model_configs/sasrecf.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/model_configs/sasrecf.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/sasrecf.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/sasrecf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +53,7 @@
     "Python.app.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "iss-28",
-    "last_opened_file_path": "C:/Users/xenx9/Desktop/Development/level2-recsys-movierecommendation-recsys-06-lv3/src/data",
+    "last_opened_file_path": "C:/Users/xenx9/.ssh/ssh1.pem",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -95,7 +97,7 @@
       <workItem from="1732513481578" duration="114000" />
       <workItem from="1732513603363" duration="125000" />
       <workItem from="1732513736181" duration="2521000" />
-      <workItem from="1732522572195" duration="9982000" />
+      <workItem from="1732522572195" duration="22117000" />
     </task>
     <servers />
   </component>
@@ -154,6 +156,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/level2_recsys_movierecommendation_recsys_06_lv3$app.coverage" NAME="app 커버리지 결과" MODIFIED="1732522354461" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/_env_sample$app.coverage" NAME="app 커버리지 결과" MODIFIED="1732531634914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/_env_sample$app.coverage" NAME="app 커버리지 결과" MODIFIED="1732588211184" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

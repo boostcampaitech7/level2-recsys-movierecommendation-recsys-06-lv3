@@ -1,8 +1,13 @@
 model:
   type: SASRecF
   mode: train #train or valid - (valid is train with valid)
-  save_path : ./saved/model
+  save_path: ./saved/model
 data:
-  type: basic # basic / v2
+  type: basic # basic / sasrecf
   base_path: ./data/train
-
+wandb:
+  use: True
+  project: "Movie-Rec"
+  run_name: "YDS-SasRecF"
+  memo: ""
+  api_key: "sample"

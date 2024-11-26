@@ -7,6 +7,7 @@ from src.model import Model
 
 def app():
     cfg = OmegaConf.load("./config/config.yaml")
+
     model_type: str = cfg["model"]["type"]
     recbole_cfg_path = f"./config/model_configs/{model_type.lower()}.yaml"
     model_cfg = OmegaConf.load(recbole_cfg_path)
@@ -19,8 +20,8 @@ def app():
     ## (Train or Train/Valid) & Inference
     mode = cfg["model"]["mode"]
     print(f"-------Start Train{mode}------------")
-    model_save_path = cfg["model"]["save_path"]
-    model = Model(recbole_cfg_path, model_save_path, mode)
+    model = Model(cfg)
+
     return
 
 

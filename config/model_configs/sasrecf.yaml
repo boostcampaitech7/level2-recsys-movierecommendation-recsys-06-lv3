@@ -1,6 +1,7 @@
 model: SASRecF  # 모델 이름
 dataset: sasrecf  # 데이터셋 이름 (기본 제공 데이터셋 사용)
 data_path: ./data/recbole
+log_wandb: True
 field_separator: "\t"
 seq_separator: ","
 load_col: {
@@ -41,7 +42,7 @@ MAX_ITEM_LIST_LENGTH: 50  # 사용자 시퀀스의 최대 길이
 #neg_sampling: none
 #train_neg_sample_args: ~
 train_neg_sample_args:
-  distribution: popularity
+  distribution: uniform
   sample_num: 5
 
 # 학습 하이퍼파라미터
