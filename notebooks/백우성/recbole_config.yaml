@@ -1,0 +1,56 @@
+model: LightGCN  # 모델 이름 (LightGCN으로 변경)
+dataset: train_ratings  # 데이터셋 이름
+data_path: "C:/Users/baeku/Documents/GitHub/level2-recsys-movierecommendation-recsys-06-lv3/data/train"
+field_separator: "\t"
+seq_separator: ","
+load_col: {
+  inter: [user_id, item_id, timestamp],
+  item: [item_id, year, genre]
+}
+
+# 기본 필드 설정
+USER_ID_FIELD: user_id
+ITEM_ID_FIELD: item_id
+TIME_FIELD: timestamp  # 상호작용의 시간 필드
+
+# 아이템 피처 설정
+ITEM_FEATURES: ['year', 'genre']
+
+# Multi-value 필드 설정
+MULTI_VALUE_FIELDS: ['genre']
+
+# 데이터 전처리 설정
+MAX_ITEM_LIST_LENGTH: 50  # 사용자 시퀀스의 최대 길이 (LightGCN에는 직접적인 영향 없음)
+
+# 학습 하이퍼파라미터 설정
+epochs: 50
+learning_rate: 0.005
+train_batch_size: 2048
+embedding_size: 64
+stopping_step: 10
+neg_sampling: uniform  # LightGCN은 음수 샘플링을 사용하여 학습합니다
+
+# LightGCN 모델 관련 설정
+hidden_size: 64  # 임베딩 차원 크기와 동일
+n_layers: 1  # LightGCN 레이어 수
+dropout_prob: 0.0  # LightGCN에서는 드롭아웃이 일반적으로 사용되지 않음
+
+# 평가 지표 설정
+metrics:
+  - recall
+  - ndcg
+  - mrr
+topk: 10  # Top-K 추천 평가
+eval_batch_size: 256
+
+# 학습 시퀀스 설정
+train_neg_sample_args: {
+  distribution: "uniform",  # 음수 샘플링 분포
+  sample_num: 1  # 사용자당 음수 샘플 개수
+}
+
+# 추가 설정
+REG_WEIGHT: 1e-4  # 정규화 가중치 (LightGCN의 L2 정규화 항목)
+
+# GPU 설정
+use_gpu: True  # GPU 사용 여부
