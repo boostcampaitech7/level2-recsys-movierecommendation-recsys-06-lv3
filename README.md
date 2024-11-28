@@ -103,10 +103,12 @@ wandb
 * 데이터 : MovieLens 데이터를 가공한 대회 제공 데이터(아래 설명 O)
 
 * 프로젝트 개요
-> [upstage](https://stages.ai/)의 [Movie Recommendation 대회](https://stages.ai/competitions/339/overview/description) 참가를 위한 프로젝트. <br>
-사용자의 영화 시청 이력 데이터를 바탕으로 사용자가 다음에 시청할 영화 및 좋아할 영화 10개를 예측해야 한다.
+> [upstage](https://stages.ai/)의 [Movie Recommendation 대회](https://stages.ai/competitions/339/overview/description) 참가를 위한 프로젝트 <br>
+사용자의 영화 시청 이력 데이터를 바탕으로 사용자가 다음에 시청할 영화 및 좋아할 영화 10개 예측
 
 ### 팀 구성 및 역할
+
+> Boostcamp AI Tech 7th RecSys-06 `.fillna` Team
 
 | 이름   | 역할                                         |
 |--------|----------------------------------------------|
@@ -120,9 +122,9 @@ wandb
 ### 프로젝트 진행 과정
 1. 프로젝트를 위한 기본 구조 설립 및 코드 작성. (유대선)
 2. 각자 데이터 분석 후 토론을 통해 EDA 결과 공유
-3. Modeling, Feature Engineering 파트 분담 진행
-4. Feature Engineering으로 필요한 feature 생성
-5. 모델 훈련 및 하이퍼파라미터 튜닝
+3. 파트별 역할 분담 진행
+4. 추가적인 EDA 진행과 데이터 Preprocessing
+5. 모델 실험 및 하이퍼파라미터 튜닝
 6. 앙상블
 7. 최종 제출 선택
 
@@ -133,7 +135,7 @@ wandb
 - GitHub Projects + Google Calendar : 팀원 간 일정 공유
 
 ## 2. EDA
-> 팀원 6인 모두 EDA 개별적으로 진행 후 모여서 결과 공유 후 토론
+> 팀원 6인 모두 개별적으로 EDA 진행 후 모여서 결과 공유 및 토론
 
 ### 2.1 데이터셋 구성 
 MovieLens 데이터셋을 기반으로 하며, 총 7개의 주요 파일로 구성
@@ -145,7 +147,7 @@ MovieLens 데이터셋을 기반으로 하며, 총 7개의 주요 파일로 구�
 | years.tsv | 6,799 | 영화 개봉 연도 (item id, year) |
 | directors.tsv | 5,905 | 영화 감독 정보 (item id, directors) |
 | writers.tsv | 11,307 | 영화 작가 정보 (item id, writers) |
-| genres.tsv | 15,934 | 영화 장르 정보 (다중 장르 가능) |
+| genres.tsv | 15,934 | 영화 장르 정보 (일부 아이템 다중 장르 포함) |
 | Ml_item2attributes.json | - | 아이템-속성 매핑 데이터 |
 
 ### 2.2 데이터 특징
@@ -182,11 +184,12 @@ MovieLens 데이터셋을 기반으로 하며, 총 7개의 주요 파일로 구�
 - 사용자의 상호작용 아이템 중 누락된 아이템을 예측하는 Static Model
 - 사용자의 마지막 상호작용 아이템을 예측하는 Sequential Model
 - 누락된 데이터 처리 전략 수립 필요
-- 다양한 메타데이터의 효과적 활용 방안 모색
+- 다양한 메타 데이터의 효과적 활용 방안 모색
 
-> 이러한 데이터 구조를 통해 주어진 문제는 시간적 순서와 컨텐츠 기반 추천을 모두 고려해야 하는 복합적인 상황을 제시하고 있음을 파악.
+> 시간적 순서와 컨텐츠 기반 추천을 모두 고려해야 하는 복합적인 상황
 
-> 하지만 데이터 자체가 Explicit feedback이 아닌 Implicit feedback으로, 아이템에 대한 유저의 단순 상호작용 여부만을 파악해야하는 문제임을 확인.
+> 데이터 자체가 Explicit feedback이 아닌 Implicit feedback으로, 
+아이템에 대한 유저의 단순 상호작용 여부 만을 파악해야하는 문제
 
 ### 2.5 기본 EDA
 2.5.1 시간에 따른 유저의 아이템 평가
@@ -195,19 +198,19 @@ MovieLens 데이터셋을 기반으로 하며, 총 7개의 주요 파일로 구�
 
 유저별 상호작용한 아이템의 개수 그래프
 - 주어진 데이터셋에서 사용자별 상호작용한 아이템의 개수는 멱함수 분포와 유사하게 이루어짐
-- 상위 10%의 유저는 335개 이상의 아이템을 평가함(상위 20%: 230개, 30%: 176개)
+- 상위 10%의 유저는 335개 이상의 아이템을 평가(상위 20%: 230개, 30%: 176개)
 
 ![335개 미만의 아이템을 평가한 유저](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2Faffced3c-899f-4f02-8ad6-a623c2bd2bb6%2Fimage.png?table=block&id=b69efb57-abe3-46e4-91ff-39fccbed5433&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=1420&userId=&cache=v2)
 
 335개 미만의 아이템을 평가한 유저
 
-- 335개 이하의 아이템을 평가한 유저는 기본적으로 지수적으로 감소하는 추세를 보이나, 약 45개 미만의 아이템을 평가한 유저는 103명, 전체의 0.3%로 해당 개수 이하 현저히 감소하는 추세가 나타남
+- 335개 이하의 아이템을 평가한 유저는 기본적으로 고르게 지수적으로 감소하는 추세를 보이나, 약 45개 미만의 아이템을 평가한 유저는 103명, 전체의 0.3%로 해당 개수 이하 현저히 감소함
 
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2F0fb03298-5ec5-47f1-a625-0e165d03ccab%2Fimage.png?table=block&id=0cae1de4-07bb-4dbd-b2e9-e8803d5facee&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=1420&userId=&cache=v2)
 
 랜덤한 유저 10명의 일별 리뷰 개수 분포
 
-- 꾸준히 아이템을 평가하는 유저도 있지만, 대부분의 유저들은 특정 시기에만 집중적으로 평가하는 경향이 있음
+- 꾸준히 아이템을 평가한 유저도 있지만, 대부분은 단기간 집중적으로 로그가 쌓여있음
 
 2.5.2 월별 아이템 평가 패턴
 
@@ -217,7 +220,7 @@ MovieLens 데이터셋을 기반으로 하며, 총 7개의 주요 파일로 구�
 
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2F3a580f2a-8626-43da-9eed-9c8059df984d%2Fimage.png?table=block&id=e3c2895c-f270-4595-b230-09be74e76de9&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=1420&userId=&cache=v2)
 
-- 리뷰가 수집되기 시작한 2005년 4월 이후에 개봉한 영화에 대해서는 개봉 직후 리뷰 수가 늘었다가 이후 떨어지는 양상을 많이 보임
+- 리뷰가 수집되기 시작한 2005년 4월 이후에 개봉한 영화에 대해서는 개봉 직후 리뷰 수가 늘었다가 이후 떨어지는 경향이 있음
 
 ### 2.6. 심화 EDA 
 2.6.1. Genre Co-occurrence Matrix
@@ -248,7 +251,8 @@ MovieLens 데이터셋을 기반으로 하며, 총 7개의 주요 파일로 구�
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2Ff914026c-7bdf-4ba7-bfbc-eea1ce15f3ed%2FGenre_Network.png?table=block&id=14c6ac11-5bd2-8068-b368-e8fdb17717ca&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=580&userId=&cache=v2)
 
 중심부 클러스터
-- **`Drama`-`Comedy`-`Romance`** 삼각형이 네트워크의 핵심을 형성 → 이 세 장르가 영화 산업에서 가장 기본적인 장르 조합임을 시사
+- **`Drama`-`Comedy`-`Romance`** 삼각형이 네트워크의 핵심을 형성 <br>
+→ 이 세 장르가 영화 산업에서 가장 기본적인 장르 조합임을 시사
 
 2.6.4. Genre Popularity Trends
 
@@ -330,9 +334,9 @@ MovieLens 데이터셋을 기반으로 하며, 총 7개의 주요 파일로 구�
 
 ### 2.8 사용자 데이터 평가 환경 확인
 
-- 사용자와 상호작용된 아이템들 중 일부 아이템이 특정한 시기에 다수의 사용자에게 집중적으로 평가되는 경향이 있음을 확인.
+- 사용자와 상호작용된 아이템들 중 일부 아이템이 특정한 시기에 다수의 사용자에게 집중적으로 평가되는 경향이 있음을 확인
 
-> 가정 : 유저가 아이템과 상호작용하는 방식에서의 차이로 이런 경향성이 유발되는 것은 아닐까?
+> 가정 : 유저가 아이템과 상호작용하는 방식의 차이로 이런 경향이 생기는 것은 아닐까?
 
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2F57fe1a80-20d3-4d3a-baa7-9640ee2b7c53%2Fimage.png?table=block&id=9b73daed-7b1a-4271-825c-bae31de9e39e&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=1420&userId=&cache=v2)
 
@@ -379,9 +383,28 @@ MovieLens의 메인화면
 - genre 데이터에는 모든 아이템에 대한 장르가 최소 1개씩 존재
 - 다수의 장르값을 가진 아이템에 대해서는 sklearn의 MultiLabelBinarizer를 이용해 멀티 레이블 인코딩 수행하여 모델 학습
 
+### 3.3 directors, writers 마스킹 파악 및 전처리
+- 마스킹된 directors, writers의 값은 동일 인물에 대해 같은 마스킹 값으로 부여되어 있음
+
+```bash
+item           0
+title          0
+director    1304
+writer      1159
+dtype: int64
+```
+
+- 아이템에 따라 director, writer에 결측치 존재 확인
+- 해당 결측값 대체 불가능함에 따라 -999로 대체(해당 값은 모델별로 마이너스값 처리 불가능한 경우 0으로 대체)
+
+### 3.4 recent_release 피처 추가
+
+- 유저의 평가 데이터가 수집되는 환경에 맞춰 노출된 영화가 recent release에서 노출된 것인지를 유추하는 피처 생성
+- 아이템별 첫 번째 리뷰를 아이템의 개봉일로 가정하고 유저와 아이템의 상호작용 time과 90일 이내일 경우 recent_release를 1로 주는 바이너리 피처
+
 ## 4. Modeling
-> Team : Static Model / Sequential Model <br>
-팀별 : EDA, Feature Engineering(*after Modeling*), Modeling
+> Team : Static Model / Sequential Model
+팀별 역할군 : EDA, Feature Engineering(*after Modeling*), Modeling
 
 - 작업 초기, `BaseLine`과 과제 코드를 기반으로 실험 후 직접 코드를 짜서 모델 구현 시도
 - 그러나 직접 구현 시 `Side Information`을 포함한 데이터 셋 정제 문제,  학습 후 추론 관련 차원 문제로 인해 소요되는 시간이 길어짐
@@ -410,29 +433,25 @@ MovieLens의 메인화면
 | --- | --- | --- | --- |
 | RecVae | x | 0.1380 | hidden_dimension: 600 / latent_dimension: 200 |
 | RaCT | 0.1433 | 0.1265 | side information 반영 |
-| MultiVAE | 0.1443 | 0.1278 | learning_rate: 0.001 / train_batch_size: 256 /
-embedding_size: 64 |
-| GRU4Rec | 0.0776 | x | embedding & hidden_size: 64 / num_layers: 1
-dropout_prob: 0.1 |
+| MultiVAE | 0.1443 | 0.1278 | learning_rate: 0.001, train_batch_size: 256,embedding_size: 64 |
+| GRU4Rec | 0.0776 | x | embedding & hidden_size: 64, num_layers: 1, dropout_prob: 0.1 |
 | BERT4Rec | 0.1299 | 0.0937 | RecBole 기본 세팅 |
 | LightGCN | 0.1383 | x | train-valid-test (1.0:0.0:0.0)  |
-| DeepFM | x | 0.0310 |  |
+| DeepFM | x | 0.0310 | 추후 확인해보니 이미 상호작용한 아이템이 중복으로 추천되어 제외 |
 | FM | 0.1269 | 0.0075 | 추후 확인해보니 이미 상호작용한 아이템이 중복으로 추천되어 제외 |
 | SASRecF | 0.058 | x | Genres One-HotCoding & Neg-Sample dist(popularity) |
 | BPR | 0.1229 | 0.1068 | RecBole 기본 세팅 |
 | ADMMSLIM | x | 0.1577 | train-valid-test (1.0:0.0:0.0) |
 | EASE | x | 0.1594 | train-valid-test (1.0:0.0:0.0) |
-| GRU4RecF | 0.1666 | 0.1011 | embedding_size: 64, hidden_size: 128
-num_layers: 1, dropout_prob: 0.3
-interaction + genre, title |
-| AutoInt | 0.1246 |  | interaction + genre, title, director, writer |
-| SASRecF | 0.0952 |  | Genres One-HotCoding, negative-sampling-number : 5 |
-|  |  |  |  |
+| GRU4RecF | 0.1666 | 0.1011 | embedding_size: 64, hidden_size: 128, interaction + genre, title |
+| AutoInt | 0.1246 | x | interaction + genre, title, director, writer |
+| SASRecF | 0.0952 | x | Genres One-HotCoding, negative-sampling-number : 5 |
+| S3Rec | x | 0.0876 | title, year, genre, director, writer |
 
 ### 4.3 Ensemble
 > EASE(**E**), RecVAE(**R**), BERT4Rec(**B**), LightGCN(**L**), ADMMSLIM(**S**), Autoint(**A**), BPR(**P**), GRU4Rec(**G**)<br>
 실험 했던 모델 중 앙상블은 위의 모델 사용. (괄호 안은 약자)<br>
-모델 별로 유저 한 명 당 영화 Top 20을 뽑아서 Voting하는 방식으로 앙상블 진행
+각 모델에서 유저 한 명 당 영화 Top 20을 뽑아서 Voting하는 방식으로 앙상블 진행
 
 - Hard Voting은 1위는 1점, 20위는 0.05점 식으로 순위 별 차등 포인트를 줘서 합산하는 방식
 
@@ -449,11 +468,14 @@ interaction + genre, title |
 | ESGR | Hard Voting | 0.1710 |  |
 | ESGRABPL | Hard Voting(A4BL은 포인트 50% 적용) | 0.1649 |  |
 | ESGR | Hard Voting(1~10위는 1점, 11~20위는 0.5점) | 0.1675 |  |
+| ESGR3 | Hard Voting | 0.1703 |  |
 
 ## 5. 최종 결과
-- Public Score가 가장 높았던 EASE + ADMMSLIM + GRU4Rec + RecVAE 모델을 하드 보팅한 방식과 ~~~ 를 제출
-- ESGR 하드보팅 : Public Score Recall@10 =  0.1710 / Private Score =
-- ~~~~ : Public Score Recall@10 =  0.1710 / Private Score =
+- Public Score가 가장 높았던 EASE + ADMMSLIM + GRU4Rec + RecVAE 모델을 하드 보팅한 방식과 S3Rec까지 포함한 방식 2가지를 제출
+- ESGR Hard Voting : Public Score Recall@10 =  0.1710 / Private Score =
+- ESGR3 Hard Voting : Public Score Recall@10 =  0.1703 / Private Score =
+- Sequential 계열 모델의 경우 개별 public 스코어는 낮았으나, 점수가 높았던 AutoEncoder 모델의 결과와 앙상블한 결과의 점수가 가장 높음
+    - 주어진 문제 자체가 static과 sequential의 두 가지 접근을 요하는 문제이다보니, 정답에서 상대적으로  개수가 적은 sequential 모델의 독자적인 성능이 떨어질 수 없었을 것이라 추정
 
 ## 6. 레퍼런스
 - RecBole Library : https://github.com/RUCAIBox/RecBole
