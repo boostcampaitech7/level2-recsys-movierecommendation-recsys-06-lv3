@@ -190,36 +190,49 @@ MovieLens 데이터셋을 기반으로 하며, 총 7개의 주요 파일로 구�
 
 ### 2.5 기본 EDA
 2.5.1 시간에 따른 유저의 아이템 평가
+
 ![유저별 상호작용한 아이템의 개수 그래프](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2F3f283173-79af-4f57-9401-ee1807e4591b%2Fimage.png?table=block&id=8d5c542c-1404-4a9c-9788-a148355f509c&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=1420&userId=&cache=v2)
+
 유저별 상호작용한 아이템의 개수 그래프
 - 주어진 데이터셋에서 사용자별 상호작용한 아이템의 개수는 멱함수 분포와 유사하게 이루어짐
 - 상위 10%의 유저는 335개 이상의 아이템을 평가함(상위 20%: 230개, 30%: 176개)
 
 ![335개 미만의 아이템을 평가한 유저](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2Faffced3c-899f-4f02-8ad6-a623c2bd2bb6%2Fimage.png?table=block&id=b69efb57-abe3-46e4-91ff-39fccbed5433&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=1420&userId=&cache=v2)
+
 335개 미만의 아이템을 평가한 유저
+
 - 335개 이하의 아이템을 평가한 유저는 기본적으로 지수적으로 감소하는 추세를 보이나, 약 45개 미만의 아이템을 평가한 유저는 103명, 전체의 0.3%로 해당 개수 이하 현저히 감소하는 추세가 나타남
 
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2F0fb03298-5ec5-47f1-a625-0e165d03ccab%2Fimage.png?table=block&id=0cae1de4-07bb-4dbd-b2e9-e8803d5facee&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=1420&userId=&cache=v2)
+
 랜덤한 유저 10명의 일별 리뷰 개수 분포
+
 - 꾸준히 아이템을 평가하는 유저도 있지만, 대부분의 유저들은 특정 시기에만 집중적으로 평가하는 경향이 있음
 
-2.5.1 월별 아이템 평가 패턴
+2.5.2 월별 아이템 평가 패턴
+
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2F32d1b7ec-6aeb-42a6-b325-a6e8631160ac%2Fimage.png?table=block&id=822daae1-d0b2-4be2-a409-79ece0f5f3f3&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=1420&userId=&cache=v2)
+
 - 가장 리뷰 수가 많은 Top5 영화에 대해 2008년 10월에 리뷰 수가 급등
 
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2F3a580f2a-8626-43da-9eed-9c8059df984d%2Fimage.png?table=block&id=e3c2895c-f270-4595-b230-09be74e76de9&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=1420&userId=&cache=v2)
+
 - 리뷰가 수집되기 시작한 2005년 4월 이후에 개봉한 영화에 대해서는 개봉 직후 리뷰 수가 늘었다가 이후 떨어지는 양상을 많이 보임
 
 ### 2.6. 심화 EDA 
 2.6.1. Genre Co-occurrence Matrix
+
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2F79440e23-13de-4e93-9446-52f6d909affd%2Fimage.png?table=block&id=14c6ac11-5bd2-802f-a9e1-e2133a6ede76&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=660&userId=&cache=v2)
+
 주요 출현 패턴 (Co-occurrence)
 - `Drama` 중심 결합: Romance(792), `Comedy`(763), `Thriller`(702)
 - `Comedy`-`Romance` 결합: 654회
 - `Documentary`: 타 장르와 낮은 결합 빈도
 
 2.6.2. Genre Correlation Matrix
+
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2F4e474f91-7bf4-4af7-b26b-4597cbda77c8%2Fimage.png?table=block&id=14c6ac11-5bd2-80de-8323-fb70428c112e&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=660&userId=&cache=v2)
+
 핵심 상관관계 (Correlation)
 - 강한 양의 상관: `Animation`-`Children`(0.84)
 - 준-강한 상관: `Crime`-`Thriller`(0.51), `Action`-`Adventure`(0.49)
@@ -231,11 +244,14 @@ MovieLens 데이터셋을 기반으로 하며, 총 7개의 주요 파일로 구�
 - 독립적 특성을 가진 장르 (`Documentary`, `Western`)
 
 2.6.3. Genre Network
+
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2Ff914026c-7bdf-4ba7-bfbc-eea1ce15f3ed%2FGenre_Network.png?table=block&id=14c6ac11-5bd2-8068-b368-e8fdb17717ca&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=580&userId=&cache=v2)
+
 중심부 클러스터
 - **`Drama`-`Comedy`-`Romance`** 삼각형이 네트워크의 핵심을 형성 → 이 세 장르가 영화 산업에서 가장 기본적인 장르 조합임을 시사
 
 2.6.4. Genre Popularity Trends
+
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2F59a84244-b984-4cd7-9bf0-3f09ce416721%2FNormalized_Rating_Count.png?table=block&id=14c6ac11-5bd2-8065-aa07-c13ebe211d13&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=660&userId=&cache=v2)
 
 장기 트렌드 관점
@@ -244,6 +260,7 @@ MovieLens 데이터셋을 기반으로 하며, 총 7개의 주요 파일로 구�
 - `Action` 장르의 꾸준한 성장
 
 2.6.5. User Genre Preference Patterns
+
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2Fe19169b5-c1c6-484f-a2f3-b35e478d1349%2FUser_Genre_Preference_Patterns.png?table=block&id=14c6ac11-5bd2-8033-9fc2-e5fb6aaf8bc5&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=1420&userId=&cache=v2)
 
 장르 클러스터링 (`Dendrogram`)
@@ -267,6 +284,7 @@ MovieLens 데이터셋을 기반으로 하며, 총 7개의 주요 파일로 구�
     - `Comedy`/`Romance` 선호 그룹의 뚜렷한 구분
 
 2.6.6. Genre Preference Evolution for “User 11”
+
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2F19eebedf-5f6d-4e29-9adf-24417fe39766%2Fimage.png?table=block&id=14c6ac11-5bd2-806d-b77d-c71f606af880&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=1420&userId=&cache=v2)
 
 **특정 사용자**(`example_user_id` 즉, 본 실험에서는 0번째 행에 위치한 `user 11`):
@@ -283,6 +301,7 @@ MovieLens 데이터셋을 기반으로 하며, 총 7개의 주요 파일로 구�
 - 장르 선호도가 시간에 따라 상당히 동적으로 변화하는 것이 특징
 
 2.6.7 평가 패턴 및 장르 분포 분석
+
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2F26958a0f-071a-46dc-814d-5e9f8efac807%2FSession_Statistics.png?table=block&id=14c6ac11-5bd2-80ea-8bc8-d5d2a231967a&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=1420&userId=&cache=v2)
 
 ### 세션 및 평가 시간 분석 - 상단 그래프
@@ -316,6 +335,7 @@ MovieLens 데이터셋을 기반으로 하며, 총 7개의 주요 파일로 구�
 > 가정 : 유저가 아이템과 상호작용하는 방식에서의 차이로 이런 경향성이 유발되는 것은 아닐까?
 
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2F57fe1a80-20d3-4d3a-baa7-9640ee2b7c53%2Fimage.png?table=block&id=9b73daed-7b1a-4271-825c-bae31de9e39e&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=1420&userId=&cache=v2)
+
 MovieLens의 메인화면
 
 - 데이터가 수집된 MovieLens의 UI는 섹션으로 구분되어 서로 다른 기준으로 다른 아이템들이 추천되고 있음
@@ -349,7 +369,9 @@ MovieLens의 메인화면
 
 ## 3. Preprocessing
 ### 3.1 결측치 처리
+
 ![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2F19040495-69b3-4d53-b629-8e16ffcd086a%2Fimage.png?table=block&id=188169f8-ec45-4f64-8014-2182f2b6b777&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=1420&userId=&cache=v2)
+
 - 전체 아이템 6807개에 대해 year 데이터에 8개의 결측치 존재
 - 결측치에 대해 titles 데이터에서 연도 추출
 
