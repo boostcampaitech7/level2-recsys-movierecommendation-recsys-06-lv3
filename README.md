@@ -373,9 +373,6 @@ MovieLens의 메인화면
 
 ## 3. Preprocessing
 ### 3.1 결측치 처리
-
-![](https://rigorous-shoemaker-76b.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Ff94927b0-a808-4d85-ba53-90de2dc55693%2F19040495-69b3-4d53-b629-8e16ffcd086a%2Fimage.png?table=block&id=188169f8-ec45-4f64-8014-2182f2b6b777&spaceId=f94927b0-a808-4d85-ba53-90de2dc55693&width=1420&userId=&cache=v2)
-
 - 전체 아이템 6807개에 대해 year 데이터에 8개의 결측치 존재
 - 결측치에 대해 titles 데이터에서 연도 추출
 
@@ -437,8 +434,8 @@ dtype: int64
 | GRU4Rec | 0.0776 | x | embedding & hidden_size: 64, num_layers: 1, dropout_prob: 0.1 |
 | BERT4Rec | 0.1299 | 0.0937 | RecBole 기본 세팅 |
 | LightGCN | 0.1383 | x | train-valid-test (1.0:0.0:0.0)  |
-| DeepFM | x | 0.0310 | 추후 확인해보니 이미 상호작용한 아이템이 중복으로 추천되어 제외 |
-| FM | 0.1269 | 0.0075 | 추후 확인해보니 이미 상호작용한 아이템이 중복으로 추천되어 제외 |
+| DeepFM | x | 0.0310 | 상호작용된 아이템이 추천되어 보수 작업 진행 중 제외 |
+| FM | 0.1269 | 0.0075 | 상호작용된 아이템이 추천되어 보수 작업 진행 중 제외 |
 | SASRecF | 0.058 | x | Genres One-HotCoding & Neg-Sample dist(popularity) |
 | BPR | 0.1229 | 0.1068 | RecBole 기본 세팅 |
 | ADMMSLIM | x | 0.1577 | train-valid-test (1.0:0.0:0.0) |
@@ -460,20 +457,21 @@ dtype: int64
 
 | 사용한 모델 | 방식 | public score | private score |
 | --- | --- | --- | --- |
-| ERBLSAP | Hard Voting | 0.1585 |  |
-| ES | Soft Voting | 0.1584 |  |
-| ESG | Soft Voting | 0.1647 |  |
-| ESGB | Soft Voting | 0.1628 |  |
-| ESG | Hard Voting | 0.1698 |  |
-| ESGR | Hard Voting | 0.1710 |  |
-| ESGRABPL | Hard Voting(A4BL은 포인트 50% 적용) | 0.1649 |  |
-| ESGR | Hard Voting(1~10위는 1점, 11~20위는 0.5점) | 0.1675 |  |
-| ESGR3 | Hard Voting | 0.1703 |  |
+| ERBLSAP | Hard Voting | 0.1585 | 0.1567 |
+| ES | Soft Voting | 0.1584 | 0.1578 |
+| ESG | Soft Voting | 0.1647 | 0.1544 |
+| ESGB | Soft Voting | 0.1628 | 0.1509 |
+| ESG | Hard Voting | 0.1698 | 0.1654 |
+| ESGR | Hard Voting | 0.1710 | 0.1679 |
+| ESGRABPL | Hard Voting(A4BL은 포인트 50% 적용) | 0.1649 | 0.1623 |
+| ESGR | Hard Voting(1~10위는 1점, 11~20위는 0.5점) | 0.1675 | 0.1654 |
+| ESGR3 | Hard Voting | 0.1703 | 0.1671 |
 
 ## 5. 최종 결과
 - Public Score가 가장 높았던 EASE + ADMMSLIM + GRU4Rec + RecVAE 모델을 하드 보팅한 방식과 S3Rec까지 포함한 방식 2가지를 제출
-- ESGR Hard Voting : Public Score Recall@10 =  0.1710 / Private Score =
-- ESGR3 Hard Voting : Public Score Recall@10 =  0.1703 / Private Score =
+- ESGR Hard Voting : Public Score Recall@10 =  0.1710 / Private Score = 0.1679
+- ESGR3 Hard Voting : Public Score Recall@10 =  0.1703 / Private Score = 0.1671
+- **Private Score 1위 / Public Score 2위**
 - Sequential 계열 모델의 경우 개별 public 스코어는 낮았으나, 점수가 높았던 AutoEncoder 모델의 결과와 앙상블한 결과의 점수가 가장 높음
     - 주어진 문제 자체가 static과 sequential의 두 가지 접근을 요하는 문제이다보니, 정답에서 상대적으로  개수가 적은 sequential 모델의 독자적인 성능이 떨어질 수 없었을 것이라 추정
 
