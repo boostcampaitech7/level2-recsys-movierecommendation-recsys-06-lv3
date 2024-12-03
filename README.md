@@ -464,7 +464,7 @@ dtype: int64
 | ESG | Hard Voting | 0.1698 | 0.1654 |
 | ESGR | Hard Voting | 0.1710 | 0.1679 |
 | ESGRABPL | Hard Voting(A4BL은 포인트 50% 적용) | 0.1649 | 0.1623 |
-| ESGR | Hard Voting(1~10위는 1점, 11~20위는 0.5점) | 0.1675 | 0.1654 |
+| ESGR | Hard Voting(1\~10위는 1점, 11\~20위는 0.5점) | 0.1675 | 0.1654 |
 | ESGR3 | Hard Voting | 0.1703 | 0.1671 |
 
 ## 5. 최종 결과
